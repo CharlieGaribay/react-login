@@ -1,3 +1,11 @@
-.App {
-  text-align: center;
+#signup #password_requirements li::marker {
+  font-size: 20px;
+}
+
+#signup #password_requirements .valid::marker {
+  color: #74cc15;
+}
+
+#signup #password_requirements .invalid::marker {
+  color: #dc3545;
 }
