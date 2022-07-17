@@ -3,9 +3,9 @@ const regex = {
   password: {
     minLenght: "^(?=.{6,})",
     numeric: "^(?=.*[0-9])",
-    specialCharacter: "^(?=.*[!”\"#$%&/()=?¿^*@‚[]{ };:_><,.-|`+.])",
+    specialCharacter: /^(?=.*[!”\\"#$%&\\/()=?¿^*@,[\]{};:_><,.|`+.])/, // ]
     string100Ladrillos: /100Ladrillos/,
-    consecutiveCharacters: /^(([a-zA-Z0-9])\2?(?!\2))+$/
+    // consecutiveCharacters: /^(([a-zA-Z0-9])\2?(?!\2))+$/
     // sequential numbers and letters
   },
 }

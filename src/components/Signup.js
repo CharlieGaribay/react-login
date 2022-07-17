@@ -42,6 +42,12 @@ export default class Signup extends Component {
         state[name].touched = true;
         return state;
       })
+    } else {
+      this.setState(state => {
+        state[name].value = value
+        state[name].valid = this.isValidPasswordConfirmation(value);
+        return state;
+      })
     }
   }
 
@@ -72,7 +78,7 @@ export default class Signup extends Component {
     let arrPassValidations = []
     arrPassValidations.push(this.testRegex(regex.password.minLenght, value));
     arrPassValidations.push(this.testRegex(regex.password.numeric, value));
-    arrPassValidations.push(true); // arrPassValidations.push(this.testRegex(regex.password.specialCharacter, value));
+    arrPassValidations.push(this.testRegex(regex.password.specialCharacter, value));
     arrPassValidations.push(!this.testRegex(regex.password.string100Ladrillos, value));
     arrPassValidations.push(this.testRegex(regex.password.consecutiveCharacters, value));
     arrPassValidations.push(true); // sequential regex
@@ -89,6 +95,17 @@ export default class Signup extends Component {
     this.setState({
       showPassword: !this.state.showPassword
     })
+  }
+
+  isValidPasswordConfirmation = value => {
+    if (this.state.password.value === value) return true;
+    return false;
+  }
+
+  onSubmit = e => {
+    e.preventDefault();
+    const { email, password } = this.state
+    console.log(email.value, password.value)
   }
 
   styleShowInvalidEmail() {
@@ -121,10 +138,19 @@ export default class Signup extends Component {
     }
   }
 
+  styleDisplayNextButton() {
+    const { email, password, confirmPassword } = this.state
+    const form = [email.valid, password.requirements.includes(true), confirmPassword.valid]
+    const invalidForm = form.includes(false)
+    return {
+      display: invalidForm ? "none" : "block",
+    }
+  }
+
   render() {
     return (
       <div>
-        <form id='signup'>
+        <form id='signup' onSubmit={this.onSubmit}>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">¿Cuál es tu correo electrónico?</label>
             <input type="email" className="form-control" name='email' id="email" placeholder="tu@correo.com" onChange={this.onChange} onKeyUpCapture={this.onKeyUp} value={this.state.email.value} />
@@ -155,6 +181,7 @@ export default class Signup extends Component {
             <label htmlFor="confirmPassword" className="form-label">Confirma tu contraseña</label>
             <input type="password" className="form-control" name='confirmPassword' id="confirmPassword" placeholder="Confirma tu contraseña" onChange={this.onChange} value={this.state.confirmPassword.value} />
           </div>
+          <input type="submit" className='btn btn-primary' value="Siguiente" style={this.styleDisplayNextButton()} />
         </form>
       </div>
     )
