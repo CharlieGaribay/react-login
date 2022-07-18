@@ -1,3 +1,45 @@
-.App {
-  text-align: center;
+#signup #password_requirements li::marker {
+  font-size: 20px;
+}
+
+#signup #password_requirements .valid::marker {
+  color: #74cc15;
+}
+
+#signup #password_requirements .invalid::marker {
+  color: #dc3545;
+}
+
+a {
+  text-decoration: none;
+}
+
+h3 {
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  #navbar_container {
+    position: fixed;
+  }
+
+  #navbar_container img {
+    margin-bottom: 150px;
+  }
+
+  #signUpPage {
+    background-color: #fff;
+    position: absolute;
+    margin-top: 50px;
+  }
+}
+
+@media (min-width: 320px) {
+  h3 {
+    font-size: medium;
+  }
+
+  p {
+    font-size: 13.5px;
+  }
 }
