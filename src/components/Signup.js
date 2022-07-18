@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../App.css';
 import regex from '../commons/regex'
+import connect from '../services/100LadrillosConector';
 
 export default class Signup extends Component {
   constructor() {
@@ -105,7 +106,16 @@ export default class Signup extends Component {
   onSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state
-    console.log(email.value, password.value)
+    const url = "/api/signUp"
+    const payload = {
+      "email": email,
+      "password": password
+    }
+    const response_connect = connect(url, payload)
+    response_connect.then((res) => {
+      console.log(res);
+      // update state step: +1 to show next section
+    })
   }
 
   styleShowInvalidEmail() {
