@@ -9,3 +9,16 @@
 #signup #password_requirements .invalid::marker {
   color: #dc3545;
 }
+
+a {
+  text-decoration: none;
+}
+
+@media (min-width: 320px) {
+  h3 {
+    font-size: medium;
+  }
+  p {
+    font-size: 13.5px;
+  }
+}
