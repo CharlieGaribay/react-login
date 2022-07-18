@@ -3,11 +3,16 @@ import './App.css';
 import Navbar from './components/Navbar';
 import logo100Ladrillos from './logo_100_ladrillos.svg'
 import Signup from './components/Signup';
+import backgroundImage from './background_image.png';
 import google from './google.png';
 import facebook from './facebook.png';
 import microsoftWindowsLogo from './microsoft-windows-logo.png';
 
 export default class App extends Component {
+
+  state = {
+    step: 1,
+  }
 
   createStyles() {
     return {
@@ -56,54 +61,55 @@ export default class App extends Component {
         />
         <div className='container row' style={this.createStyles()}>
           <div className="col-12 col-lg-6">
-            <img alt="imagen" />
+            <img src={backgroundImage} alt="imagen" />
           </div>
-          <div className="col-12 col-lg-5">
-            <h3>Crear tu cuenta</h3>
-            <div>
-              <p>
-                Al aceptar crear una cuenta en 100 Ladrillos <br />
-                aceptas nuestro <a href="https://100ladrillos.zendesk.com/hc/es/articles/360001074632-Aviso-de-Privacidad">Aviso de Privacidad</a>, <a href="https://100ladrillos.zendesk.com/hc/es/articles/360001106571-Derechos-ARCO"> Derechos Arco </a>
-                y nuestros <a href="https://100ladrillos.zendesk.com/hc/es/articles/360001099131-T%C3%A9rminos-y-Condiciones">Términos y Condiciones</a>.
-              </p>
-            </div> <br />
+          {this.state.step === 1 &&
+            <div className="col-12 col-lg-5 offset-lg-1" id='signUpPage'>
+              <h3>Crear tu cuenta</h3>
+              <div>
+                <p>
+                  Al aceptar crear una cuenta en 100 Ladrillos <br />
+                  aceptas nuestro <a href="https://100ladrillos.zendesk.com/hc/es/articles/360001074632-Aviso-de-Privacidad">Aviso de Privacidad</a>, <a href="https://100ladrillos.zendesk.com/hc/es/articles/360001106571-Derechos-ARCO"> Derechos Arco </a> <br />
+                  y nuestros <a href="https://100ladrillos.zendesk.com/hc/es/articles/360001099131-T%C3%A9rminos-y-Condiciones">Términos y Condiciones</a>.
+                </p>
+              </div>
 
-            <Signup />
+              <Signup step={this.state.step} />
 
-            <div className="row">
-              <div className="col" style={this.stylesHr()}></div>
-              <div className="col-8 text-center">o regístrate con:</div>
-              <div className="col" style={this.stylesHr()}></div>
-            </div>
+              <div className="row">
+                <div className="col" style={this.stylesHr()}></div>
+                <div className="col-8 text-center">o regístrate con:</div>
+                <div className="col" style={this.stylesHr()}></div>
+              </div>
 
-            <br />
+              <br />
 
-            <div className="row">
-              <div className="col-4">
-                <div style={this.stylesSocialNetworkContainer()}>
-                  <img src={google} alt="Google" style={this.stylesSocialNetworkImages()} />
+              <div className="row">
+                <div className="col-4">
+                  <div style={this.stylesSocialNetworkContainer()}>
+                    <img src={google} alt="Google" style={this.stylesSocialNetworkImages()} />
+                  </div>
+                </div>
+                <div className="col-4">
+                  <div style={this.stylesSocialNetworkContainer()}>
+                    <img src={microsoftWindowsLogo} alt="Microsoft Windows Logo" style={this.stylesSocialNetworkImages()} />
+                  </div>
+                </div>
+                <div className="col-4">
+                  <div style={this.stylesSocialNetworkContainer()}>
+                    <img src={facebook} alt="Facebook" style={this.stylesSocialNetworkImages()} />
+                  </div>
                 </div>
               </div>
-              <div className="col-4">
-                <div style={this.stylesSocialNetworkContainer()}>
-                  <img src={microsoftWindowsLogo} alt="Microsoft Windows Logo" style={this.stylesSocialNetworkImages()} />
-                </div>
+
+              <br />
+
+              <div className="text-center">
+                <span>¿Ya tienes tu cuenta?</span> <br />
+                <a href="/" style={this.stylesSigin()}>Iniciar sesión</a>
               </div>
-              <div className="col-4">
-                <div style={this.stylesSocialNetworkContainer()}>
-                  <img src={facebook} alt="Facebook" style={this.stylesSocialNetworkImages()} />
-                </div>
-              </div>
-            </div>
 
-            <br />
-
-            <div className="text-center">
-              <span>¿Ya tienes tu cuenta?</span> <br />
-              <a href="/" style={this.stylesSigin()}>Iniciar sesión</a>
-            </div>
-
-          </div>
+            </div>}
         </div>
       </div>
     )

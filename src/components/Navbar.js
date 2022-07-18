@@ -10,7 +10,7 @@ export default class Navbar extends Component {
 
   render() {
     return (
-      <div>
+      <div id='navbar_container'>
         <nav className="navbar navbar-expand-lg">
           <div className="container-fluid">
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,6 +25,9 @@ export default class Navbar extends Component {
                   </li>
                   <li className="nav-item">
                     <a className="nav-link active" aria-current="page" href="/" style={this.styles()}>Entrar</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link active" aria-current="page" href="/" style={this.styles()}>Registrarme</a>
                   </li>
                 </ul>
               </div>
